@@ -3,13 +3,65 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <title>
-
-    </title>
+    <title>HELLO PLUS INVITATION.</title>
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/css/tachyons.css">
+    <script>
+        var invitation_code = null;
+        var inviter_name = null;
+        var inviter_avatar_src = null;
+        var data_ref = null;
+
+        var url_search = window.location.search;
+        var code = url_search.split("=");
+        if(code && code.length > 0){
+            invitation_code = code[1];
+            data_ref = code[1];
+        } else {
+            alert("Wrong invitation code");
+        }
+
+        function createXHR() {
+            var xhr;
+            if (window.ActiveXObject) {
+                try {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                catch (e) {
+                    alert(e.message);
+                    xhr = null;
+                }
+            }
+            else {
+                xhr = new XMLHttpRequest();
+            }
+
+            return xhr;
+        }
+        var xhr = createXHR();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                console.log(typeof xhr.responseText);
+                var responseText = xhr.responseText;
+                if(!responseText){
+//                    inviter_name = "Sorry, No invitation code provided";
+                    window.location.href = "http://gethello.im/"
+                    return;
+                }
+                var data = JSON.parse(responseText);
+                inviter_name = data["@inviter"]["name"];
+                inviter_avatar_src = data["@inviter"]["avatar"];
+                console.log(invitation_code,inviter_name,inviter_avatar_src);
+                avatar1 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-1 br-100 dn-ns" width="80px">';
+                avatar2 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-2 br-100 dn db-ns" width="120px">';
+            }
+        }
+        xhr.open('GET', 'https://api.gethello.im/invite-code/'+invitation_code, false)
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        xhr.send()
+    </script>
 </head>
 <body>
 <!--  ===navigation=== 开始 -->
@@ -46,9 +98,11 @@
         <div class="cf">
             <!--  ===invitation words=== 开始 -->
             <div class="fl-ns">
-                <img src="./images/avatar.jpg" alt="" class="br-100 dn-ns" width="80px">
-                <img src="./images/avatar.jpg" alt="" class="br-100 dn db-ns" width="120px">
-                <p class="ma0 pt2 f4 black-80"><span class="b" style="color:#1371FB">Desmond</span> invites you to</p>
+                <script type="text/javascript"> document.write(avatar1); </script>
+                <script type="text/javascript"> document.write(avatar2); </script>
+                <!--<img src="./images/avatar.jpg" alt="" class="js-avatar-1 br-100 dn-ns" width="80px">-->
+                <!--<img src="./images/avatar.jpg" alt="" class="js-avatar-2 br-100 dn db-ns" width="120px">-->
+                <p class="ma0 pt2 f4 black-80"><span class="b" style="color:#1371FB"><script type="text/javascript">document.write(inviter_name)</script></span> invites you to</p>
                 <p class="ma0 pt3 b f2 f1-ns">Hello Plus!</p>
                 <!--  ===facebook=== 开始 -->
                 <div class="mt3">
