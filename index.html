@@ -123,7 +123,7 @@
 
             <!--  ===invitation image=== 开始 -->
             <div class="w-50 fr-ns">
-                <img src="./images/running@2x.png" alt="" class="w-100 dn db-ns">
+                <img src="./images/running@2x.png" alt="" class="mw-100 dn db-ns">
             </div>
             <!--  ===invitation image=== 结束 -->
         </div>
@@ -487,6 +487,17 @@
     var menu = document.querySelector(".js-btn-menu");
     var nav = document.querySelector('.js-view-navigation');
     menu.addEventListener('click', function () {
+        var classList = (new Array(nav.classList)).join(" ");
+        var has_dn = classList.indexOf("dn") != -1 ? true : false;
+        if (has_dn) {
+            classList = classList.replace('dn', "");
+        } else {
+            classList = classList + " dn";
+        }
+        nav.classList = classList
+        var classList = nav.classList;
+    })
+    menu.addEventListener('touch', function () {
         var classList = (new Array(nav.classList)).join(" ");
         var has_dn = classList.indexOf("dn") != -1 ? true : false;
         if (has_dn) {
