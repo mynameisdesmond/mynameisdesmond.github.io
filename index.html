@@ -488,26 +488,27 @@
     var nav = document.querySelector('.js-view-navigation');
     menu.addEventListener('click', function () {
         var classList = (new Array(nav.classList)).join(" ");
+        console.log(classList);
         var has_dn = classList.indexOf("dn") != -1 ? true : false;
         if (has_dn) {
             classList = classList.replace('dn', "");
         } else {
             classList = classList + " dn";
         }
-        nav.classList = classList
-        var classList = nav.classList;
+        nav.className = classList
     })
-    menu.addEventListener('touch', function () {
-        var classList = (new Array(nav.classList)).join(" ");
-        var has_dn = classList.indexOf("dn") != -1 ? true : false;
-        if (has_dn) {
-            classList = classList.replace('dn', "");
-        } else {
-            classList = classList + " dn";
-        }
-        nav.classList = classList
-        var classList = nav.classList;
-    })
+//    menu.addEventListener('touchend', function () {
+//        alert('hi');
+//        var classList = (new Array(nav.classList)).join(" ");
+//        var has_dn = classList.indexOf("dn") != -1 ? true : false;
+//        if (has_dn) {
+//            classList = classList.replace('dn', "");
+//        } else {
+//            classList = classList + " dn";
+//        }
+//        nav.classList = classList
+//        var classList = nav.classList;
+//    })
 
 </script>
 </html>
