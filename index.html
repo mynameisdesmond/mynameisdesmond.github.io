@@ -54,8 +54,8 @@
                 inviter_name = data["@inviter"]["name"];
                 inviter_avatar_src = data["@inviter"]["avatar"];
                 console.log(invitation_code,inviter_name,inviter_avatar_src);
-                avatar1 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-1 br-100 dn-ns" width="80px">';
-                avatar2 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-2 br-100 dn db-ns" width="120px">';
+                avatar1 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-1 br-100 dn-ns" width="80px" height="80px">';
+                avatar2 = '<img src="'+inviter_avatar_src+'" alt="" class="js-avatar-2 br-100 dn db-ns" width="120px" height="120px">';
             }
         }
         xhr.open('GET', 'https://api.gethello.im/invite-code/'+invitation_code, false)
